@@ -5,34 +5,42 @@
       flat
     >
       <v-toolbar-title>Quote App</v-toolbar-title>
-
       <v-spacer></v-spacer>
-    <v-btn
-      color="light"
-    >
-        <v-icon
-        class="mdi-pencil"
-        >mdi-pencil</v-icon>
-      Создать цитату
-    </v-btn>
-
+      <form action="search">
+      <input v-model="searchQuote" type="text" name="" placeholder="Search..." id="">
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
+      </form>
+    <v-btn
+      color="light"
+      @click="openDialog"
+    >
+        <v-icon
+        class="mdi-pencil"
+        >mdi-pencil
+        </v-icon>
+        Создать цитату
+    </v-btn>
+
     </v-toolbar>
   </v-card>
 </template>
 
 <script>
   export default {
+    components :  {
+    },
     data () {
       return {
-        tab: null,
-        items: [
-          'web', 'shopping', 'videos', 'images', 'news',
-        ],
-        text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.',
+        dialogVisible:  false,
+        searchQuote : '',
       }
     },
+    methods: {
+      openDialog(){
+        this.$store.commit('showDialog')
+      }
+    }
   }
 </script>

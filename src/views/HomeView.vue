@@ -1,16 +1,28 @@
 <template>
 <Navbar/>
 <HomeList/>
+<Footer/>
+<HomeQuoteAdd/>
 </template>
 
 <script>
 import Navbar from "@/components/Navbar.vue";
-import HomeList from "@/components/HomeList.vue"
+import HomeList from "@/components/HomeList.vue";
+import Footer from "@/components/Footer.vue";
+import HomeQuoteAdd from "@/components/HomeQuoteAdd.vue";
+
+
+
 
   export default {
    components : {
     Navbar,
-    HomeList
+    HomeQuoteAdd,
+    HomeList,
+    Footer
+   },
+   methods : {
+  
    }
   }
 </script>
