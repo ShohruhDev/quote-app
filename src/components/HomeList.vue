@@ -4,13 +4,6 @@
      Quote List
    </div>
     <HomeListItem 
-    v-for="(quote , i) in quotesList"
-    :key="i"
-    :id="quote.id"
-    :author="quote.author"
-    :text="quote.text"
-    :genre="quote.genre"
-    @quoteRemove="quoteRemove(i)"
     /> 
   </v-container>
 </template>
@@ -54,10 +47,7 @@ export default {
   HomeListItem
  },
  methods: {
-  quoteRemove(i){
-    return this.quotesList.filter(quote => {
-    })
-  }
+
  }
 }
 </script>

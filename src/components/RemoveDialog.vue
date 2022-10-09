@@ -22,6 +22,7 @@
           <v-btn
             color="green darken-1"
             text
+            @click="removeQuote"
           >
             Agree
           </v-btn>
@@ -35,6 +36,9 @@ export default {
   methods: {
     hideRemoveDialog(){
         this.$store.commit('hideRemoveDialog')
+      },
+      removeQuote() {
+      this.$emit('removeQuote');
       }
   }
 }

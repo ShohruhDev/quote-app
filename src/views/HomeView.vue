@@ -1,7 +1,7 @@
 <template>
 <Navbar/>
 <HomeList/>
-<Footer/>
+<!-- <Footer/> -->
 <HomeQuoteAdd/>
 </template>
 
@@ -11,18 +11,13 @@ import HomeList from "@/components/HomeList.vue";
 import Footer from "@/components/Footer.vue";
 import HomeQuoteAdd from "@/components/HomeQuoteAdd.vue";
 
-
-
-
-  export default {
-   components : {
+export default {
+  components : {
     Navbar,
     HomeQuoteAdd,
     HomeList,
     Footer
-   },
-   methods : {
-  
-   }
-  }
+  },
+  methods : {}
+}
 </script>
