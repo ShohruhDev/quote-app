@@ -22,9 +22,11 @@
           <v-chip
           class="ma-2"
           color="cyan"
+          v-for="(gen, index) in quote.values"
+          :key="index"
         >
-          {{quote.genre}}
-        </v-chip>
+          {{gen}}
+          </v-chip>
             <v-spacer></v-spacer>
             <v-btn
               class="mr-10"
@@ -33,13 +35,13 @@
               text
             >
             <v-icon> mdi-square-edit-outline</v-icon>
-              Редактировать
+                Редактировать
             </v-btn>
               <v-btn
                 @click="openRemoveDialog"
                 depressed
                 color="error"
-        >
+              >
              <v-icon> mdi-delete</v-icon>
                Удалить
             </v-btn>
@@ -56,24 +58,25 @@
         RemoveDialog,
         },
       computed: {
-      ...mapGetters([
-              "QUOTES"
-              ]),
+      ...mapGetters(["QUOTES"]),
        },
       methods: {
-        ...mapActions(['DELETE_FROM_CARD']),
-        removeQuote(i){
-          this.DELETE_FROM_CARD(i)
+       openDialog(){
+        this.$store.commit('showDialog')
+      },
+        ...mapActions(['removeQuote']),
+        removeQuote(id){
+          this.removeQuote(id)
         },
         ...mapActions([
-        "GET_QUOTESLIST"
+        "fetchQuotes"
         ]),
         openRemoveDialog(){
           this.$store.commit('showRemoveDialog')
           }
         },
       mounted() {
-        this.GET_QUOTESLIST()
+        this.fetchQuotes()
       }
 
       }

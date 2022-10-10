@@ -18,7 +18,7 @@
        <form action="">
       <v-text-field
         solo
-        v-model="author"
+        v-model="quotes.author"
         :error-messages="nameErrors"
         label="Author"
         required
@@ -27,9 +27,10 @@
           solo
           name="input-7-4"
           label="Quote..."
+          v-model="quotes.text"
         ></v-textarea>
           <v-autocomplete
-            v-model="values"
+            v-model="quotes.values"
             :items="items"
             dense
             chips
@@ -39,7 +40,9 @@
             solo
           ></v-autocomplete>
        </form>
-       <v-btn>
+       <v-btn
+       @click="addQuote"
+       >
         Создать
        </v-btn>
       </v-container>
@@ -49,17 +52,34 @@
 </template>
 
 <script>
+  import axios from 'axios'
   export default {
     data: () => ({
       items: ['drama', 'boevik', 'komedia', 'life'],
-      values: [],
+      quotes : {
+        author:'',
+        text: '',
+        values: []
+      },
       value: null,
     }),
      methods: {
       hideDialog(){
         this.$store.commit('hideDialog')
-      } 
+      },
+     async addQuote(){
+         const result = await axios.post("http://localhost:3001/quotesList", {
+          author: this.quotes.author,
+          text: this.quotes.text,
+          values: this.quotes.values,
+        });
+        if(result.status == 201){
+          // this.hideDialog()
+          this.$router.push({name: 'home'})
+        }
+      }
+    },
   }
-  }
+ 
 </script>
 

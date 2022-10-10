@@ -1,6 +1,10 @@
 import { createStore } from 'vuex';
 import axios from 'axios';
 
+const request = axios.create({
+  baseURL: 'http://localhost:3001'
+})
+
 export default createStore({
   state: {
     dialogVisible: false,
@@ -15,10 +19,10 @@ export default createStore({
     getRemoveDialogVisible: (state) => state.removeDialog,
   },
   mutations: {
-    REMOVE_FROM_CARD: (state,i) => {
-      state.quotesList(i,1)
+    REMOVE_QUOTE: (state, id) => {
+      state.quotesList(i, 1)
     },
-    SET_QUOTES_TO_STATE: (state,quotesList) => {
+    SET_QUOTES_TO_STATE: (state, quotesList) => {
      state.quotesList = quotesList;
     },
     showDialog(state) {
@@ -35,17 +39,26 @@ export default createStore({
     },
   },
   actions: {
-    GET_QUOTESLIST({commit}) {
-      return axios('http://localhost:3001/quotesList', {
-       method: "GET"
-      })
+    fetchQuotes({ commit }) {
+      return request.get('/quotesList')
       .then((quotesList) => {
         commit('SET_QUOTES_TO_STATE', quotesList.data );
         return quotesList;
       })
+      .catch((err) => {
+        return new Error(err)
+      })
     },
-    DELETE_FROM_CARD({commit},i) {
-    commit('REMOVE_FROM_CARD',i)
+    removeQuote({ commit }, id) {
+      return request.delete(`/quotesList/${id}`)
+        .then((res) => {
+          console.log('delete response: ', res);
+          commit('REMOVE_QUOTE', id)
+          return res
+        })
+        .catch((err) => {
+          return new Error(err)
+        })
     },
   },
   modules: {

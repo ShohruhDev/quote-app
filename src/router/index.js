@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-
+import HomeQuoteAdd from "@/components/HomeQuoteAdd.vue"
+import UpdateQuote from "@/components/UpdateQuote.vue"
 
 const routes = [
   {
@@ -8,6 +9,16 @@ const routes = [
     name: 'home',
     component: HomeView
   },
+  {
+  path: '/update:id',
+  name: 'update',
+  component: UpdateQuote
+},
+  {
+  path: '/quoteadd',
+  name: 'homeQuoteAdd',
+  component: HomeQuoteAdd
+},
 
 ]
 

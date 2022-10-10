@@ -5,13 +5,19 @@
       flat
     >
       <v-toolbar-title>Quote App</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <form action="search">
-      <input v-model="searchQuote" type="text" name="" placeholder="Search..." id="">
-      <v-btn icon>
+         <v-col
+          md="2"
+        >
+          <v-text-field
+            label="Search..."
+            solo
+            v-model="searchQuote"
+          >
+          </v-text-field>
+        </v-col>
+      <v-btn icon >
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
-      </form>
     <v-btn
       color="light"
       @click="openDialog"
@@ -37,10 +43,17 @@
         searchQuote : '',
       }
     },
+    computed: {
+      // filteredQuotes(){
+      //   return this.$store.q.filter(quote => {
+      //     return quote.toUpperCase().indexOf(this.searchQuote.toUpperCase()) !== -1;
+      //   })
+      // }
+    },
     methods: {
       openDialog(){
         this.$store.commit('showDialog')
-      }
+      },
     }
   }
 </script>
