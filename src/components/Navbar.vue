@@ -1,37 +1,30 @@
 <template>
-  <v-card>
-    <v-toolbar
-      color="cyan"
-      flat
-    >
-      <v-toolbar-title>Quote App</v-toolbar-title>
-         <v-col
-          md="2"
+        <v-card>
+        <v-container>
+        <v-toolbar
+        color="white"
+        flat
         >
-          <v-text-field
-            label="Search..."
-            solo
-            v-model="searchQuote"
+        <div class="v-toolbar__content ">
+          <v-toolbar-title
+          >Quote App</v-toolbar-title>
+          <v-btn icon >
+            <v-icon>mdi-magnify</v-icon>
+          </v-btn>
+          <v-btn
+          color="light"
+          @click="this.$router.push({name:'homeQuoteAdd'})"
           >
-          </v-text-field>
-        </v-col>
-      <v-btn icon >
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-    <v-btn
-      color="light"
-       @click="this.$router.push({name:'homeQuoteAdd'})"
-
-    >
-        <v-icon
-        class="mdi-pencil"
-        >mdi-pencil
+          <v-icon
+          class="mdi-pencil"
+          >mdi-pencil
         </v-icon>
         Создать цитату
-    </v-btn>
-
-    </v-toolbar>
-  </v-card>
+        </v-btn>
+        </div>
+  </v-toolbar>
+</v-container>
+</v-card>
 </template>
 
 <script>
@@ -58,3 +51,10 @@
     }
   }
 </script>
+<style scoped>
+@media(max-width: 450px) {
+  .v-toolbar__content {
+    display: block;
+  }
+}
+</style>

@@ -2,13 +2,15 @@
   <v-container>
     <v-card>
       <v-container>
-        <v-btn 
-        @click="this.$router.push({name:'home'})"
-        >
-          <v-icon>
-          mdi-close
-          </v-icon>
-        </v-btn>
+        <div class="btn d-flex justify-end">
+          <v-btn 
+          @click="this.$router.push({name:'home'})"
+          >
+            <v-icon>
+            mdi-close
+            </v-icon>
+          </v-btn>
+        </div>
        <v-card-title>Создать цитату</v-card-title>
        <form action="">
       <v-text-field
@@ -39,11 +41,14 @@
             solo
           ></v-autocomplete>
        </form>
-       <v-btn
-       @click="addQuote"
-        >
-        Создать
-       </v-btn>
+       <div class="btn d-flex justify-end">
+         <v-btn
+         @click="addQuote"
+          >
+          Создать
+         </v-btn>
+
+       </div>
       </v-container>
      </v-card>
   </v-container>

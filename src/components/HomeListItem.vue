@@ -17,7 +17,9 @@
               <v-list-item-subtitle>{{quote.text}}</v-list-item-subtitle>
             </v-list-item-content>
           </v-list-item>
-          <v-card-actions>
+          <v-card-actions
+          class="d-sm-flex d-block"
+          >
           <v-chip
           class="ma-2"
           color="cyan"
@@ -82,3 +84,12 @@
 
       }
     </script>
+
+    <style scoped>
+    @media (max-width: 500px) {
+      v-card-actions {
+        display: block;
+
+      }
+    }
+    </style>

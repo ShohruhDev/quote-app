@@ -1,6 +1,7 @@
 <template>
   <v-container>
     <v-card>
+     <div class="btn d-flex justify-end">
         <v-btn
          @click="this.$router.push({name:'home'})"
         >
@@ -8,6 +9,7 @@
              mdi-close
           </v-icon>
         </v-btn>
+      </div>
        <v-card-title>Редактировать цитату</v-card-title>
        <form action="">
       <v-text-field
@@ -36,11 +38,13 @@
             solo
           ></v-autocomplete>
        </form>
+      <div class="btn d-flex justify-end">
        <v-btn
        @click="updateQuote"
        >
         Редактировать
        </v-btn>
+       </div>
     </v-card>
   </v-container>
 </template>
