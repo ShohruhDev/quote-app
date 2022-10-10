@@ -2,12 +2,12 @@ import { createStore } from 'vuex';
 import axios from 'axios';
 
 const request = axios.create({
-    baseURL: 'http://localhost:3001'
-})
+    baseURL: 'http://localhost:3001',
+});
 
 export default createStore({
     state: {
-        quotesList: []
+        quotesList: [],
     },
     getters: {
         QUOTES(state) {
@@ -21,14 +21,15 @@ export default createStore({
     },
     actions: {
         fetchQuotes({ commit }) {
-            return request.get('/quotesList')
-                .then((quotesList) => {
+            return request
+                .get('/quotesList')
+                .then(quotesList => {
                     commit('SET_QUOTES_TO_STATE', quotesList.data);
                     return quotesList;
                 })
-                .catch((err) => {
-                    return new Error(err)
-                })
+                .catch(err => {
+                    return new Error(err);
+                });
         },
     },
-})
+});

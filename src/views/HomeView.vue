@@ -1,6 +1,6 @@
 <template>
-<Navbar/>
-<HomeList/>
+  <Navbar />
+  <HomeList />
 </template>
 
 <script>
@@ -9,10 +9,10 @@ import HomeList from "@/components/HomeList.vue";
 import Footer from "@/components/Footer.vue";
 
 export default {
-  components : {
+  components: {
     Navbar,
     HomeList,
-    Footer
+    Footer,
   },
-}
+};
 </script>
