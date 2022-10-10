@@ -19,6 +19,7 @@
         required
         :rules="rules"
          hide-details="auto"
+         mb-10
     ></v-text-field>
         <v-textarea
           :rules="rules"
@@ -40,7 +41,7 @@
        </form>
        <v-btn
        @click="addQuote"
-       >
+        >
         Создать
        </v-btn>
       </v-container>

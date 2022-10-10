@@ -1,9 +1,8 @@
     <template>
         <v-card
           class="mt-10"
-          v-for="(quote, i) in QUOTES"
-          :key="quote.author"
-          @removeQuote = "removeQuote(i)"
+          v-for="(quote, index) in QUOTES"
+          :key="index"
         >
           <v-list-item 
           three-line
@@ -44,20 +43,25 @@
               <v-btn
                 depressed
                 color="error"
-                @click="removeQuote(quote.id)"
+                @click.stop="removeQuote(quote.id)"
+
               >
              <v-icon> mdi-delete</v-icon>
                Удалить
             </v-btn>
           </v-card-actions>
         </v-card>
-        <RemoveDialog/>
     </template>
 
     <script>
     import axios from 'axios'
     import {mapActions,mapGetters} from "vuex";
     export default {
+      data () {
+        return {
+        dialog: false,
+      }
+    },
       computed: {
       ...mapGetters(["QUOTES"]),
        },
