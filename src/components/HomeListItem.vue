@@ -66,20 +66,20 @@
     },
       computed: {
       ...mapGetters(["QUOTES"]),
-       },
-      methods: {
-        ...mapActions([
+    },
+    methods: {
+      ...mapActions([
         "fetchQuotes"
-        ]),
-        async removeQuote(id){
-         let result = await axios.delete("http://localhost:3001/quotesList/"+id);
+      ]),
+      async removeQuote(id){
+        let result = await axios.delete("http://localhost:3001/quotesList/"+id);
         if(result.status == 200){
           this.fetchQuotes()
         }
-       },
-        },
-      mounted() {
-        this.fetchQuotes();
+      },
+    },
+    mounted() {
+      this.fetchQuotes();
       }
 
       }

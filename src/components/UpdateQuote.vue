@@ -65,10 +65,10 @@
     }),
     methods: {
      async updateQuote() {
-        const result = await axios.put("http://localhost:3001/quotesList/"+this.$route.params.id, {
-          author: this.quotes.author,
-          text: this.quotes.text,
-          values: this.quotes.values,
+       const result = await axios.put("http://localhost:3001/quotesList/"+this.$route.params.id, {
+         author: this.quotes.author,
+         text: this.quotes.text,
+         values: this.quotes.values,
         });
         if(result.status == 200){
           this.$router.push({name: 'home'})
@@ -77,7 +77,6 @@
     },
    async mounted() {
       const result = await axios.get('http://localhost:3001/quotesList/'+this.$route.params.id)
-      // console.log(this.$route.params.id, 'shoh')
       this.quotes = result.data
     }
   }
