@@ -10,7 +10,7 @@
           >
             <v-list-item-content>
               <v-list-item-title class="text-h6 mb-1">
-                {{quote.id}}
+               ID: {{quote.id}}
               </v-list-item-title>
               <v-list-item-title class="text-h6 mb-1">
                 {{quote.author}}
@@ -28,6 +28,9 @@
           {{gen}}
           </v-chip>
             <v-spacer></v-spacer>
+            <router-link
+            :to="'/update' +quote.id"
+            >
             <v-btn
               class="mr-10"
               outlined
@@ -37,10 +40,11 @@
             <v-icon> mdi-square-edit-outline</v-icon>
                 Редактировать
             </v-btn>
+            </router-link>
               <v-btn
-                @click="openRemoveDialog"
                 depressed
                 color="error"
+                @click="removeQuote(quote.id)"
               >
              <v-icon> mdi-delete</v-icon>
                Удалить
@@ -51,32 +55,25 @@
     </template>
 
     <script>
+    import axios from 'axios'
     import {mapActions,mapGetters} from "vuex";
-    import RemoveDialog from "@/components/RemoveDialog.vue";
     export default {
-    components: {
-        RemoveDialog,
-        },
       computed: {
       ...mapGetters(["QUOTES"]),
        },
       methods: {
-       openDialog(){
-        this.$store.commit('showDialog')
-      },
-        ...mapActions(['removeQuote']),
-        removeQuote(id){
-          this.removeQuote(id)
-        },
         ...mapActions([
         "fetchQuotes"
         ]),
-        openRemoveDialog(){
-          this.$store.commit('showRemoveDialog')
-          }
+        async removeQuote(id){
+         let result = await axios.delete("http://localhost:3001/quotesList/"+id);
+        if(result.status == 200){
+          this.fetchQuotes()
+        }
+       },
         },
       mounted() {
-        this.fetchQuotes()
+        this.fetchQuotes();
       }
 
       }

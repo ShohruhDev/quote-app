@@ -1,17 +1,12 @@
 <template>
   <v-container>
-    <v-dialog
-      persistent
-      max-width="1000"
-      v-model="$store.getters.getDialogVisible"
-    >
     <v-card>
       <v-container>
-        <v-btn
-        @click="hideDialog"
+        <v-btn 
+        @click="this.$router.push({name:'home'})"
         >
           <v-icon>
-             mdi-close
+          mdi-close
           </v-icon>
         </v-btn>
        <v-card-title>Создать цитату</v-card-title>
@@ -22,8 +17,11 @@
         :error-messages="nameErrors"
         label="Author"
         required
+        :rules="rules"
+         hide-details="auto"
     ></v-text-field>
         <v-textarea
+          :rules="rules"
           solo
           name="input-7-4"
           label="Quote..."
@@ -47,7 +45,6 @@
        </v-btn>
       </v-container>
      </v-card>
-    </v-dialog>
   </v-container>
 </template>
 
@@ -56,6 +53,9 @@
   export default {
     data: () => ({
       items: ['drama', 'boevik', 'komedia', 'life'],
+      rules: [
+        value => !!value || 'Required.',
+      ],
       quotes : {
         author:'',
         text: '',
@@ -64,9 +64,6 @@
       value: null,
     }),
      methods: {
-      hideDialog(){
-        this.$store.commit('hideDialog')
-      },
      async addQuote(){
          const result = await axios.post("http://localhost:3001/quotesList", {
           author: this.quotes.author,
@@ -74,7 +71,6 @@
           values: this.quotes.values,
         });
         if(result.status == 201){
-          // this.hideDialog()
           this.$router.push({name: 'home'})
         }
       }

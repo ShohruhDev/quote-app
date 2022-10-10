@@ -1,7 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
-import HomeQuoteAdd from "@/components/HomeQuoteAdd.vue"
-import UpdateQuote from "@/components/UpdateQuote.vue"
+import HomeQuoteAdd from "@/components/HomeQuoteAdd.vue";
+import UpdateQuote from "@/components/UpdateQuote.vue";
+
 
 const routes = [
   {

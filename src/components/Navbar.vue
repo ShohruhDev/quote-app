@@ -20,7 +20,8 @@
       </v-btn>
     <v-btn
       color="light"
-      @click="openDialog"
+       @click="this.$router.push({name:'homeQuoteAdd'})"
+
     >
         <v-icon
         class="mdi-pencil"

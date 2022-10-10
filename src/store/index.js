@@ -19,17 +19,8 @@ export default createStore({
     getRemoveDialogVisible: (state) => state.removeDialog,
   },
   mutations: {
-    REMOVE_QUOTE: (state, id) => {
-      state.quotesList(i, 1)
-    },
     SET_QUOTES_TO_STATE: (state, quotesList) => {
      state.quotesList = quotesList;
-    },
-    showDialog(state) {
-      state.dialogVisible = true;
-    },
-    hideDialog(state) {
-      state.dialogVisible = false;
     },
     showRemoveDialog(state) {
       state.removeDialog = true;
@@ -49,18 +40,5 @@ export default createStore({
         return new Error(err)
       })
     },
-    removeQuote({ commit }, id) {
-      return request.delete(`/quotesList/${id}`)
-        .then((res) => {
-          console.log('delete response: ', res);
-          commit('REMOVE_QUOTE', id)
-          return res
-        })
-        .catch((err) => {
-          return new Error(err)
-        })
-    },
   },
-  modules: {
-  }
 })
